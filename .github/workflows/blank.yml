@@ -23,10 +23,7 @@ jobs:
           token: ${{ secrets.METRICS }}
           committer_token: ${{ secrets.GITHUB_TOKEN }} # Pro aktualizaci README.md
           base: header, repositories, activity, community, lines, achievements, stars
-          plugin_contributors: yes
-          plugin_activity: yes
           plugin_languages: yes
-          plugin_lines: yes
           plugin_stargazers: yes
           plugin_achievements: yes
           plugin_followup: yes
