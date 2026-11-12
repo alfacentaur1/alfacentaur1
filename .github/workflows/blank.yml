@@ -1,29 +1,20 @@
-name: Metrics
+name: Profile Summary Cards
 
 on:
-  # Automatické aktualizace každý den o půlnoci
+  # Automatická aktualizace každý den o půlnoci
   schedule: [{cron: "0 0 * * *"}]
   # Možnost ručního spuštění
   workflow_dispatch:
-  # Spuštění při pushi na master/main
-  push:
-    branches: ["master", "main"]
 
 jobs:
-  github-metrics:
+  profile-summary-cards:
     runs-on: ubuntu-latest
-    environment: 
-      name: production
     permissions:
       contents: write
     steps:
-      # Použití akce Metrics
-      - uses: lowlighter/metrics@latest
+      - uses: vn7n24fzkq/github-profile-summary-cards@release
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICS }}
         with:
-          token: ${{ secrets.METRICS }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }} # Pro aktualizaci README.md
-          base: header, repositories, activity, community, lines, achievements, stars
-          plugin_languages: yes
-          plugin_stargazers: yes
-          plugin_achievements: yes
-          config_timezone: Europe/Prague
+          USERNAME: ${{ github.repository_owner }}
+          BRANCH_NAME: main
